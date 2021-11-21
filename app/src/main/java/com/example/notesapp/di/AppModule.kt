@@ -21,8 +21,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app: Application) : NoteDatabase {
-        return  Room.databaseBuilder(
+    fun provideNoteDatabase(app: Application): NoteDatabase {
+        return Room.databaseBuilder(
             app,
             NoteDatabase::class.java,
             NoteDatabase.DATABASE_NAME
@@ -32,32 +32,17 @@ object AppModule {
     @Provides
     @Singleton
     fun providerNoteRepository(db: NoteDatabase): NoteRepository {
-        return  NoteRepositoryImpl(db.noteDao)
+        return NoteRepositoryImpl(db.noteDao)
     }
-
 
     @Provides
     @Singleton
     fun providerNoteUseCases(repository: NoteRepository): NoteUseCases {
-        return  NoteUseCases(
+        return NoteUseCases(
             getNotesUseCase = GetNotesUseCase(repository),
             deleteNoteUseCase = DeleteNoteUseCase(repository),
             addNoteUseCase = AddNoteUseCase(repository)
         )
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

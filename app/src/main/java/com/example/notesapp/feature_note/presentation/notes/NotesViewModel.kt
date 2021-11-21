@@ -34,7 +34,9 @@ class NotesViewModel @Inject constructor(
     fun onEvent(event: NotesEvent) {
         when (event) {
             is NotesEvent.Order -> {
-                if (state.value.noteOrder::class == event.noteOrder::class && state.value.noteOrder.orderType == event.noteOrder.orderType) {
+                if (state.value.noteOrder::class == event.noteOrder::class
+                    && state.value.noteOrder.orderType == event.noteOrder.orderType
+                ) {
                     return
                 }
 
@@ -48,7 +50,9 @@ class NotesViewModel @Inject constructor(
             }
             is NotesEvent.RestoreNote -> {
                 viewModelScope.launch {
-                    noteUseCases.addNoteUseCase(recentlyDeletedNote ?: return@launch)
+                    noteUseCases.addNoteUseCase(
+                        recentlyDeletedNote ?: return@launch
+                    )
                     recentlyDeletedNote = null
                 }
             }
@@ -63,7 +67,7 @@ class NotesViewModel @Inject constructor(
 
         getNotesJob?.cancel()
 
-        noteUseCases.getNotesUseCase(noteOrder).onEach { notes ->
+        getNotesJob = noteUseCases.getNotesUseCase(noteOrder).onEach { notes ->
             _state.value = state.value.copy(
                 notes = notes,
                 noteOrder = noteOrder
