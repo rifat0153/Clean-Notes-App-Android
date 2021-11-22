@@ -1,5 +1,6 @@
 package com.example.notesapp.feature_note.presentation.notes.components
 
+import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -96,14 +97,19 @@ fun NotesScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(state.notes) { note ->
+
                     NoteItem(
                         note = note,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
+                                Log.d(
+                                    "note",
+                                    "NoteScreen: noteId :${note.id}"
+                                )
                                 navController.navigate(
                                     Screen.AddEditNoteScreen.route +
-                                            "?noteid=${note.id}&noteColor=${note.color}"
+                                            "?noteId=${note.id}&noteColor=${note.color}"
                                 )
                             },
                         onDeleteClick = {

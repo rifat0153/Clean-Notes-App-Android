@@ -40,7 +40,7 @@ fun OrderSection(
             )
             Spacer(modifier = Modifier.width(8.dp))
         }
-        
+
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(
@@ -50,7 +50,7 @@ fun OrderSection(
                 text = "Ascending",
                 selected = noteOrder.orderType is OrderType.Ascending,
                 onSelect = {
-                    noteOrder.copy(OrderType.Ascending)
+                    onOrderChange(noteOrder.copy(OrderType.Ascending))
                 }
             )
             Spacer(modifier = Modifier.width(8.dp))
@@ -59,7 +59,7 @@ fun OrderSection(
                 text = "Descending",
                 selected = noteOrder.orderType is OrderType.Descending,
                 onSelect = {
-                    noteOrder.copy(OrderType.Descending)
+                    onOrderChange(noteOrder.copy(OrderType.Descending))
                 }
             )
             Spacer(modifier = Modifier.width(8.dp))

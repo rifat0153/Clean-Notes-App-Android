@@ -31,13 +31,16 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.onBackground
                 ) {
                     val navController = rememberNavController()
+
                     NavHost(
                         navController = navController,
                         startDestination = Screen.NotesScreen.route
                     ) {
+
                         composable(route = Screen.NotesScreen.route) {
                             NotesScreen(navController = navController)
                         }
+
                         composable(
                             route = Screen.AddEditNoteScreen.route +
                                     "?noteId={noteId}&noteColor={noteColor}",

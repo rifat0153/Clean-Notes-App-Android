@@ -61,10 +61,10 @@ fun NoteItem(
                     ),
                     topLeft = Offset(
                         size.width - cutCornerSize.toPx(),
-                        100f
+                        -5f
                     ),
                     size = Size(
-                        cutCornerSize.toPx() + 100f,
+                        cutCornerSize.toPx() + 120f,
                         cutCornerSize.toPx()
                     ),
                     cornerRadius = CornerRadius(cornerRadius.toPx())
